@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>1bc90b38-c8ab-4cc7-a9f9-975774eca72e</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\HP Laptop.jpg" />
+    <None Include="wwwroot\images\Logi M220 Wireless Mouse.jpg" />
+    <None Include="wwwroot\images\PXC278 Wave 27_ Curved Gaming Monitor.jpg" />
+    <None Include="wwwroot\images\Soundcore by Anker Q20i Hybrid Active Noise Cancelling Headphones, Wireless Over-Ear Bluetooth.jpg" />
+    <None Include="wwwroot\images\[In Stock] Hane Collection Pearlescent Translucent Dye Sublimation PC Cherry Profile Keycaps.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Data.Tables" Version="12.11.0" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.29.1" />
+    <PackageReference Include="Azure.Storage.Files.Shares" Version="12.27.1" />
+    <PackageReference Include="Azure.Storage.Queues" Version="12.27.1" />
+    <PackageReference Include="AzureDataTables.EasyRepository" Version="0.8.0" />
+    <PackageReference Include="Microsoft.Extensions.Azure" Version="1.13.1" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+  </ItemGroup>
+
+</Project>
