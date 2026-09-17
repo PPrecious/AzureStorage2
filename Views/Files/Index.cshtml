@@ -1,0 +1,242 @@
+﻿@model List<AzureStorageWebApp.Models.LogFileViewModel>
+
+@{
+    ViewData["Title"] = "Azure Files";
+}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">
+                Azure Files — Application Logs
+            </h2>
+
+            <p class="text-muted mb-0">
+                File share:
+                <strong>applicationlogs</strong>
+            </p>
+        </div>
+
+        <span class="badge text-bg-primary fs-6">
+            @Model.Count files
+        </span>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show"
+             role="alert">
+
+            <strong>Success:</strong>
+            @TempData["Success"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show"
+             role="alert">
+
+            <strong>Azure Storage connection error:</strong>
+
+            <div class="mt-1">
+                @TempData["Error"]
+            </div>
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    }
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h5 class="card-title mb-2">
+                Create Application Log
+            </h5>
+
+            <p class="text-muted mb-3">
+                Enter a message to create and store a new
+                application log in the Azure Files
+                <strong>applicationlogs</strong> share.
+            </p>
+
+            <form asp-controller="Files"
+                  asp-action="CreateLog"
+                  method="post"
+                  class="row g-2">
+
+                @Html.AntiForgeryToken()
+
+                <div class="col-md-10">
+
+                    <label for="message"
+                           class="visually-hidden">
+                        Log Message
+                    </label>
+
+                    <input id="message"
+                           name="message"
+                           type="text"
+                           class="form-control"
+                           placeholder="Enter log message"
+                           maxlength="500"
+                           required />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <button type="submit"
+                            class="btn btn-primary w-100">
+                        Save Log to Azure Files
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <div>
+                    <h5 class="card-title mb-1">
+                        Stored Log Files
+                    </h5>
+
+                    <p class="text-muted small mb-0">
+                        Application logs stored in Azure Files.
+                    </p>
+                </div>
+
+                <span class="badge text-bg-secondary">
+                    @Model.Count file@(Model.Count == 1 ? "" : "s")
+                </span>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-striped table-hover align-middle mb-0">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                File Name
+                            </th>
+
+                            <th>
+                                Size
+                            </th>
+
+                            <th>
+                                Last Modified
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @if (Model.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="4"
+                                    class="text-center text-muted py-5">
+
+                                    <div class="mb-2">
+                                        <strong>
+                                            No log files found.
+                                        </strong>
+                                    </div>
+
+                                    <small>
+                                        Use the form above to create
+                                        your first application log.
+                                    </small>
+
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var file in Model)
+                            {
+                                <tr>
+
+                                    <td class="text-break">
+                                        <strong>
+                                            @file.Name
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        @file.Size bytes
+                                    </td>
+
+                                    <td>
+                                        @(file.LastModified?.ToLocalTime()
+                                            .ToString("dd MMM yyyy HH:mm:ss")
+                                            ?? "Unknown")
+                                    </td>
+
+                                    <td>
+
+                                        <a asp-controller="Files"
+                                           asp-action="Download"
+                                           asp-route-name="@file.Name"
+                                           class="btn btn-sm btn-outline-primary">
+                                            Download
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .card {
+        border: 0;
+        border-radius: 12px;
+    }
+
+    .form-control {
+        min-height: 44px;
+    }
+
+    .table th {
+        white-space: nowrap;
+    }
+</style>

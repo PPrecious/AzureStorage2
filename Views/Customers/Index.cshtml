@@ -1,0 +1,206 @@
+﻿@model List<CustomerEntity>
+
+
+<div class="d-flex justify-content-between
+    align-items-center mb-3">
+
+    <div>
+
+        <h2 class="mb-1">
+            Customer Profiles
+        </h2>
+
+        <p class="text-muted mb-0">
+
+            Azure Table Storage:
+            CustomerProfiles
+
+        </p>
+
+    </div>
+
+
+    <span class="badge text-bg-primary">
+
+        @Model.Count records
+
+    </span>
+
+</div>
+
+
+<div class="card p-3 mb-4 shadow-sm">
+
+    <h5>
+        Add Customer
+    </h5>
+
+
+    <form asp-action="Create"
+          method="post"
+          class="row g-2">
+
+        @Html.AntiForgeryToken()
+
+
+        <div class="col-md-3">
+
+            <input name="FullName"
+                   class="form-control"
+                   placeholder="Full name"
+                   maxlength="100"
+                   required />
+
+        </div>
+
+
+        <div class="col-md-3">
+
+            <input name="Email"
+                   type="email"
+                   class="form-control"
+                   placeholder="Email"
+                   maxlength="150"
+                   required />
+
+        </div>
+
+
+        <div class="col-md-2">
+
+            <input name="Phone"
+                   class="form-control"
+                   placeholder="Phone"
+                   maxlength="30"
+                   required />
+
+        </div>
+
+
+        <div class="col-md-2">
+
+            <input name="City"
+                   class="form-control"
+                   placeholder="City"
+                   maxlength="80"
+                   required />
+
+        </div>
+
+
+        <div class="col-md-2">
+
+            <button type="submit"
+                    class="btn btn-primary w-100">
+
+                Add Customer
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<div class="table-responsive">
+
+    <table class="table table-striped
+        table-hover align-middle">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Partition Key
+                </th>
+
+                <th>
+                    Row Key
+                </th>
+
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    Email
+                </th>
+
+                <th>
+                    Phone
+                </th>
+
+                <th>
+                    City
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            @if (Model.Count == 0)
+            {
+                <tr>
+
+                    <td colspan="6"
+                        class="text-center
+                        text-muted py-4">
+
+                        No customers stored yet.
+
+                    </td>
+
+                </tr>
+            }
+            else
+            {
+                foreach (var customer in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @customer.PartitionKey
+                        </td>
+
+                        <td>
+                            <code>
+                                @customer.RowKey
+                            </code>
+                        </td>
+
+                        <td>
+                            @customer.FirstName
+                        </td>
+
+                        
+                        <td>
+                            @customer.LastName
+                        </td>
+
+                        <td>
+                            @customer.Email
+                        </td>
+
+                        <td>
+                            @customer.Phone
+                        </td>
+
+                        <td>
+                            @customer.City
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

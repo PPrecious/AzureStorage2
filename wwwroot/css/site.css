@@ -1,0 +1,36 @@
+body {
+    background: #f8fafc;
+}
+
+.hero {
+    border: 1px solid #e5e7eb;
+}
+
+.metric {
+    border: 0;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+    .metric .display-6 {
+        font-weight: 700;
+    }
+
+.media-preview {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+    background: #f4f4f5;
+}
+
+.placeholder-media {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f4f5;
+    color: #52525b;
+}
+
+table code {
+    font-size: 0.8rem;
+}

@@ -1,0 +1,176 @@
+﻿@model StorageDashboardViewModel
+
+
+<div class="p-5 mb-4 bg-light rounded-3 hero">
+
+    <div class="container-fluid py-3">
+
+        <h1 class="display-6 fw-bold">
+
+            Azure Storage Services
+            Web Application
+
+        </h1>
+
+
+    </div>
+
+</div>
+
+
+@if (!string.IsNullOrWhiteSpace(
+    Model.Message))
+{
+    <div class="alert alert-danger">
+
+        <strong>
+            Azure Storage connection error:
+        </strong>
+
+        <br />
+
+        @Model.Message
+
+    </div>
+}
+else
+{
+    <div class="row g-3">
+
+        <div class="col-md-4">
+
+            <div class="card metric h-100">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Azure Tables
+                    </h6>
+
+                    <div class="display-6">
+
+                        @Model.CustomerCount
+
+                    </div>
+
+                    <span>
+                        Customer records
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card metric h-100">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Azure Tables
+                    </h6>
+
+                    <div class="display-6">
+
+                        @Model.ProductCount
+
+                    </div>
+
+                    <span>
+                        Product records
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card metric h-100">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Blob Storage
+                    </h6>
+
+                    <div class="display-6">
+
+                        @Model.BlobCount
+
+                    </div>
+
+                    <span>
+                        Multimedia files
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="card metric h-100">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Queue Storage
+                    </h6>
+
+                    <div class="display-6">
+
+                        @Model.QueueCount
+
+                    </div>
+
+                    <span>
+                        Approximate queue messages
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="card metric h-100">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Azure Files
+                    </h6>
+
+                    <div class="display-6">
+
+                        @Model.FileCount
+
+                    </div>
+
+                    <span>
+                        Log files
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+}
