@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=azstoragewebapp1036;AccountKey=rBFx7ZXnJD7lzsKjrHwEdQP49gDXOjTS7RwF06iH1O3MmC3sMtUCDlJr3jAR1Szzbc8S/ozbjUjQ+AStKzuhXg==;EndpointSuffix=core.windows.net",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "AzureStorage__ConnectionString": "DefaultEndpointsProtocol=https;AccountName=azstoragewebapp1036;AccountKey=rBFx7ZXnJD7lzsKjrHwEdQP49gDXOjTS7RwF06iH1O3MmC3sMtUCDlJr3jAR1Szzbc8S/ozbjUjQ+AStKzuhXg==;EndpointSuffix=core.windows.net",
+    "AzureStorage__CustomerTable": "CustomerProfiles",
+    "AzureStorage__ProductTable": "Products",
+    "AzureStorage__BlobContainer": "productmedia",
+    "AzureStorage__QueueName": "orderprocessing",
+    "AzureStorage__FileShare": "applicationlogs"
+  }
+}
